@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import random
+import sys
 
 
 # Extracted from:
@@ -17,9 +18,20 @@ def make_block(width, height):
     return '\n'.join(make_string(width) for _ in range(height))
 
 
-def run():
-    print(make_block(60, 40))
+def emojoin(strings):
+    akku = ''
+    for s in strings:
+        akku += s
+        akku += random.choice(ALL_EMOJIS_STRING)
+    return akku
+
+
+def run(argv):
+    if len(argv) <= 1:
+        print(make_block(60, 40))
+    else:
+        print(emojoin(argv[1:]))
 
 
 if __name__ == '__main__':
-    run()
+    run(sys.argv)
